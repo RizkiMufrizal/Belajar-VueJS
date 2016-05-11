@@ -10,9 +10,11 @@
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
     mongoose = require('mongoose'),
+    cors = require('cors'),
 
     indexRoute = require('./routes/IndexRoute'),
     userRoute = require('./routes/UserRoute'),
+    barangRoute = require('./routes/BarangRoute'),
     logger = require('./config/logger'),
 
     app = express();
@@ -20,6 +22,7 @@
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'jade');
 
+  app.use(cors());
   app.use(morgan('combined', {
     stream: logger.stream
   }));
@@ -38,6 +41,7 @@
 
   app.use('/', indexRoute);
   app.use('/api', userRoute);
+  app.user('/api', barangRoute);
 
   mongoose.connect('mongodb://localhost/Belajar-VueJS', function(err, res) {
     if (err) {
