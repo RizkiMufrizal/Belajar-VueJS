@@ -1,62 +1,76 @@
-var express = require('express');
-var expressSession = require('express-session');
-var path = require('path');
-var favicon = require('serve-favicon');
-var morgan = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
+(function() {
+  'use strict';
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var logger = require('./config/logger');
+  var express = require('express'),
+    expressSession = require('express-session'),
+    path = require('path'),
+    favicon = require('serve-favicon'),
+    morgan = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    methodOverride = require('method-override'),
+    mongoose = require('mongoose'),
 
-var app = express();
+    routes = require('./routes/index'),
+    users = require('./routes/users'),
+    logger = require('./config/logger'),
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+    app = express();
 
-app.use(morgan('combined', {
-  stream: logger.stream
-}));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-app.use(methodOverride());
-app.use(expressSession({
-  resave: true,
-  saveUninitialized: true,
-  secret: 'uwotm8'
-}));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'jade');
 
-app.use('/', routes);
-app.use('/users', users);
+  app.use(morgan('combined', {
+    stream: logger.stream
+  }));
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+  app.use(methodOverride());
+  app.use(expressSession({
+    resave: true,
+    saveUninitialized: true,
+    secret: 'uwotm8'
+  }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+  app.use('/', routes);
+  app.use('/users', users);
 
-if (app.get('env') === 'development') {
+  mongoose.connect('mongodb://localhost/Belajar-VueJS', function(err, res) {
+    if (err) {
+      return logger.error('koneksi mongodb gagal bung', err);
+    } else {
+      return logger.info('koneksi mongodb berhasil bung');
+    }
+  });
+
+  app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+  });
+
+  if (app.get('env') === 'development') {
+    app.use(function(err, req, res, next) {
+      res.status(err.status || 500);
+      res.render('error', {
+        message: err.message,
+        error: err
+      });
+    });
+  }
+
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
-      error: err
+      error: {}
     });
   });
-}
 
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
-});
+  module.exports = app;
 
-module.exports = app;
+}).call(this);
