@@ -11,8 +11,7 @@
     methodOverride = require('method-override'),
     mongoose = require('mongoose'),
 
-    routes = require('./routes/index'),
-    users = require('./routes/users'),
+    indexRoute = require('./routes/IndexRoute'),
     userRoute = require('./routes/UserRoute'),
     logger = require('./config/logger'),
 
@@ -37,8 +36,7 @@
   app.use(cookieParser());
   app.use(express.static(path.join(__dirname, 'public')));
 
-  app.use('/', routes);
-  app.use('/users', users);
+  app.use('/', indexRoute);
   app.use('/api', userRoute);
 
   mongoose.connect('mongodb://localhost/Belajar-VueJS', function(err, res) {
