@@ -7,10 +7,17 @@
 
   user = new Schema({
     email: {
+      name: 'email',
       type: String,
       required: true
     },
-    password: {
+    passwordHash: {
+      name: 'password_hash',
+      type: String,
+      required: true
+    },
+    passwordSalt: {
+      name: 'password_salt',
       type: String,
       required: true
     },
