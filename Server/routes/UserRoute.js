@@ -32,10 +32,10 @@
         user.save(function(err, user) {
           if (err) {
             logger.error('error bung ', err);
-            res.json(err);
+            return res.json(err);
           }
 
-          res.json({
+          return res.json({
             'info': 'anda berhasil melakukan registrasi',
             'success': true
           });
@@ -56,7 +56,7 @@
 
       if (err) {
         logger.error('error bung ', err);
-        res.json(err);
+        return res.json(err);
       }
 
       if (user.length) {
@@ -75,7 +75,7 @@
 
               if (err) {
                 logger.error('error bung ', err);
-                res.json(err);
+                return res.json(err);
               }
 
               res.json({
@@ -86,14 +86,14 @@
 
             });
           } else {
-            res.json({
+            return res.json({
               'info': 'password anda salah',
               'success': false
             });
           }
         });
       } else {
-        res.json({
+        return res.json({
           'info': 'anda belum melakukan registrasi',
           'success': false
         });
