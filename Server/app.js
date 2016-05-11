@@ -13,6 +13,7 @@
 
     routes = require('./routes/index'),
     users = require('./routes/users'),
+    userRoute = require('./routes/UserRoute'),
     logger = require('./config/logger'),
 
     app = express();
@@ -38,6 +39,7 @@
 
   app.use('/', routes);
   app.use('/users', users);
+  app.use('/api', userRoute);
 
   mongoose.connect('mongodb://localhost/Belajar-VueJS', function(err, res) {
     if (err) {
@@ -69,6 +71,12 @@
       message: err.message,
       error: {}
     });
+  });
+
+  app.use(function(err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+      res.status(401).send('invalid token...');
+    }
   });
 
   module.exports = app;
