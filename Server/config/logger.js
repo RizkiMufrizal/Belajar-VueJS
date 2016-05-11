@@ -1,3 +1,5 @@
+'use strict';
+
 var winston = require('winston');
 var moment = require('moment');
 winston.emitErrs = true;
