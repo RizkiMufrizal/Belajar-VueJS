@@ -109,6 +109,8 @@
     return res.json({
       'info': 'hello word'
     });
-  })
+  });
+
+  module.exports = router;
 
 }).call(this);
