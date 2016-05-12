@@ -45,6 +45,15 @@ export default {
     localStorage.removeItem('token')
     this.user.authenticated = false
     router.go('home')
+  },
+
+  checkAuthenticate() {
+    var token = localStorage.getItem('token')
+    if (token) {
+      this.user.authenticated = true
+    } else {
+      this.user.authenticated = false
+    }
   }
 
 }
