@@ -4,6 +4,7 @@ import VueResource from 'vue-resource'
 
 import Home from './components/Home.vue'
 import App from './components/App.vue'
+import Login from './components/Login.vue'
 
 Vue.use(VueResource)
 Vue.use(VueRouter)
@@ -13,6 +14,9 @@ export var router = new VueRouter()
 router.map({
   '/home': {
     component: Home
+  },
+  '/signIn': {
+    component: Login
   }
 })
 
