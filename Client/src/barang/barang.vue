@@ -1,6 +1,6 @@
 <template>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">
+<button @click="tambahBarang" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">
     Tambah
 </button>
 
@@ -54,7 +54,29 @@
                 <h4 class="modal-title" v-else>Ubah Barang</h4>
             </div>
             <div class="modal-body">
-                <form>
+                <form v-if="enable">
+                    <div class="form-group">
+                        <label>Nama Barang</label>
+                        <input v-model="inputBarang.namaBarang" type="text" class="form-control" placeholder="Masukkan Nama Barang">
+                    </div>
+                    <div class="form-group">
+                        <label>Jenis Barang</label>
+                        <input v-model="inputBarang.jenisBarang" type="text" class="form-control" placeholder="Masukkan Jenis Barang">
+                    </div>
+                    <div class="form-group">
+                        <label>Harga Barang</label>
+                        <input v-model="inputBarang.hargaBarang" type="text" class="form-control" placeholder="Masukkan Harga Barang">
+                    </div>
+                    <div class="form-group">
+                        <label>Jumlah Barang</label>
+                        <input v-model="inputBarang.jumlahBarang" type="text" class="form-control" placeholder="Masukkan Jumlah Barang">
+                    </div>
+                    <div class="form-group">
+                        <label>Tanggal Kadaluarsa</label>
+                        <input v-model="inputBarang.tanggalKadaluarsa" type="date" class="form-control" placeholder="Masukkan Tanggal Kadaluarsa">
+                    </div>
+                </form>
+                <form v-else>
                     <div class="form-group">
                         <label>ID Barang</label>
                         <input v-model="inputBarang.idBarang" type="text" class="form-control" placeholder="Masukkan ID Barang" disabled>
@@ -112,6 +134,7 @@ export default {
     },
     tambahBarang() {
       this.enable = true
+      this.inputBarang = {}
     },
     simpanBarang(b) {
       BarangController.simpanBarang(this, b)
