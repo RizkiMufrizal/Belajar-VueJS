@@ -6,6 +6,7 @@ import Home from './home/home.vue'
 import App from './App.vue'
 import SignIn from './authentication/signin.vue'
 import SignUp from './authentication/signup.vue'
+import Barang from './barang/barang.vue';
 
 Vue.use(VueResource)
 Vue.use(VueRouter)
@@ -21,6 +22,9 @@ router.map({
   },
   '/signUp': {
     component: SignUp
+  },
+  '/barang': {
+    component: Barang
   }
 })
 
