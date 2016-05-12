@@ -1,3 +1,5 @@
+import { router } from '../index';
+
 const API_URL = 'http://127.0.0.1:3000'
 const API_URL_SIGNUP = API_URL + '/api/user'
 const API_URL_SIGNIN = API_URL + '/api/authenticate'
@@ -8,11 +10,15 @@ export default {
     authenticated: false
   },
 
-  signIn(context, userAuth) {
+  signIn(context, userAuth, redirect) {
     context.$http.post(API_URL_SIGNIN, userAuth, (data) => {
 
       if (data.success) {
         this.user.authenticated = true
+        localStorage.setItem('token', data.token)
+
+        router.go(redirect)
+
       } else {
         context.info = data.info
         console.log(data.info);
