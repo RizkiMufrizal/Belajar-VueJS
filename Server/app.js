@@ -41,7 +41,7 @@
 
   app.use('/', indexRoute);
   app.use('/api', userRoute);
-  app.user('/api', barangRoute);
+  app.use('/api', barangRoute);
 
   mongoose.connect('mongodb://localhost/Belajar-VueJS', function(err, res) {
     if (err) {
