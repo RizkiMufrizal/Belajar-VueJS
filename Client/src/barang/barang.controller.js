@@ -17,9 +17,10 @@ export default {
   },
 
   simpanBarang(context, barang) {
-    context.$http.post({
+    context.$http({
       url: API_URL_BARANG,
-      barang,
+      method: 'POST',
+      data: barang,
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('id_token')
       }
@@ -28,12 +29,14 @@ export default {
     }, (err) => {
       context.error = err
     })
+
   },
 
   updateBarang(context, barang, idBarang) {
-    context.$http.put({
+    context.$http({
       url: API_URL_BARANG + '/' + idBarang,
-      barang,
+      method: 'PUT',
+      data: barang,
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('id_token')
       }
@@ -45,8 +48,9 @@ export default {
   },
 
   hapusBarang(context, idBarang) {
-    context.$http.delete({
+    context.$http({
       url: API_URL_BARANG + '/' + idBarang,
+      method: 'DELETE',
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('id_token')
       }
