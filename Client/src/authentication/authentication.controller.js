@@ -39,6 +39,12 @@ export default {
     }).error((err) => {
       context.error = err
     })
+  },
+
+  logout() {
+    localStorage.removeItem('token')
+    this.user.authenticated = false
+    router.go('home')
   }
 
 }
