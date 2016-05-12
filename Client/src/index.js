@@ -2,9 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 
-import Home from './components/Home.vue'
-import App from './components/App.vue'
-import Login from './components/Login.vue'
+import Home from './home/home.vue'
+import App from './App.vue'
+import Login from './authentication/login.vue'
 
 Vue.use(VueResource)
 Vue.use(VueRouter)
