@@ -13,6 +13,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a v-link="'home'">Home</a></li>
+            <li><a v-link="'barang'">Data Barang</a></li>
             <li><a v-link="'signIn'">Sign In</a></li>
             <li><a v-link="'signUp'">Sign Up</a></li>
           </ul>
