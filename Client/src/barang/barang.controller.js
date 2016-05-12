@@ -7,7 +7,7 @@ export default {
     context.$http.get({
       url: API_URL_BARANG,
       headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('id_token')
+        Authorization: 'Bearer ' + localStorage.getItem('token')
       }
     }).then((data) => {
       context.dataBarang = data.barangs
@@ -22,7 +22,7 @@ export default {
       method: 'POST',
       data: barang,
       headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('id_token')
+        Authorization: 'Bearer ' + localStorage.getItem('token')
       }
     }).then((data) => {
       context.info = data.info
@@ -38,7 +38,7 @@ export default {
       method: 'PUT',
       data: barang,
       headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('id_token')
+        Authorization: 'Bearer ' + localStorage.getItem('token')
       }
     }).then((data) => {
       context.info = data.info
@@ -52,7 +52,7 @@ export default {
       url: API_URL_BARANG + '/' + idBarang,
       method: 'DELETE',
       headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('id_token')
+        Authorization: 'Bearer ' + localStorage.getItem('token')
       }
     }).then((data) => {
       context.info = data.info
