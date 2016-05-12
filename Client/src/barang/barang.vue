@@ -27,12 +27,12 @@
     </thead>
     <tbody>
         <tr v-for="b in dataBarang">
-            <td>@{{ b.idBarang }}</td>
-            <td>@{{ b.namaBarang }}</td>
-            <td>@{{ b.jenisBarang }}</td>
-            <td>@{{ b.hargaBarang }}</td>
-            <td>@{{ b.jumlahBarang }}</td>
-            <td>@{{ b.tanggalKadaluarsa }}</td>
+            <td>{{ b.idBarang }}</td>
+            <td>{{ b.namaBarang }}</td>
+            <td>{{ b.jenisBarang }}</td>
+            <td>{{ b.hargaBarang }}</td>
+            <td>{{ b.jumlahBarang }}</td>
+            <td>{{ b.tanggalKadaluarsa }}</td>
             <td>
                 <button type="button" @click="editBarang(b)" class="btn btn-success" data-toggle="modal" data-target="#modal">
                     <i class="glyphicon glyphicon-pencil"></i>
@@ -57,7 +57,7 @@
                 <form>
                     <div class="form-group">
                         <label>ID Barang</label>
-                        <input v-model="inputBarang.idBarang" type="text" class="form-control" placeholder="Masukkan ID Barang">
+                        <input v-model="inputBarang.idBarang" type="text" class="form-control" placeholder="Masukkan ID Barang" disabled>
                     </div>
                     <div class="form-group">
                         <label>Nama Barang</label>
@@ -111,7 +111,7 @@ export default {
       BarangController.ambilBarang(this)
     },
     tambahBarang() {
-      enable = true
+      this.enable = true
     },
     simpanBarang(b) {
       BarangController.simpanBarang(this, b)
@@ -119,7 +119,7 @@ export default {
       this.ambilBarang()
     },
     editBarang(b) {
-      enable = false
+      this.enable = false
       this.inputBarang.idBarang = b.idBarang
       this.inputBarang.namaBarang = b.namaBarang
       this.inputBarang.jenisBarang = b.jenisBarang
@@ -134,6 +134,7 @@ export default {
     },
     hapusBarang(idBarang) {
       BarangController.hapusBarang(this, idBarang)
+      this.ambilBarang()
     }
   },
   ready() {
