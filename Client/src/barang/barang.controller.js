@@ -10,7 +10,7 @@ export default {
         Authorization: 'Bearer ' + localStorage.getItem('token')
       }
     }).then((data) => {
-      context.dataBarang = data.barangs
+      context.dataBarang = data.data.barangs
     }, (err) => {
       context.error = err
     })
