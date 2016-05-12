@@ -1,3 +1,5 @@
+import { router } from '../index';
+
 const API_URL = 'http://127.0.0.1:3000'
 const API_URL_BARANG = API_URL + '/api/barang'
 
@@ -13,6 +15,9 @@ export default {
       context.dataBarang = data.data.barangs
     }, (err) => {
       context.error = err
+      if (err.status === 401) {
+        router.go('signIn')
+      }
     })
   },
 
@@ -28,6 +33,9 @@ export default {
       context.info = data.info
     }, (err) => {
       context.error = err
+      if (err.status === 401) {
+        router.go('signIn')
+      }
     })
 
   },
@@ -44,6 +52,9 @@ export default {
       context.info = data.info
     }, (err) => {
       context.error = err
+      if (err.status === 401) {
+        router.go('signIn')
+      }
     })
   },
 
@@ -58,6 +69,9 @@ export default {
       context.info = data.info
     }, (err) => {
       context.error = err
+      if (err.status === 401) {
+        router.go('signIn')
+      }
     })
   }
 
