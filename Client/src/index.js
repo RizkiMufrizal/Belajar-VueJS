@@ -4,7 +4,8 @@ import VueResource from 'vue-resource'
 
 import Home from './home/home.vue'
 import App from './App.vue'
-import Login from './authentication/login.vue'
+import SignIn from './authentication/signin.vue'
+import SignUp from './authentication/signup.vue'
 
 Vue.use(VueResource)
 Vue.use(VueRouter)
@@ -16,7 +17,10 @@ router.map({
     component: Home
   },
   '/signIn': {
-    component: Login
+    component: SignIn
+  },
+  '/signUp': {
+    component: SignUp
   }
 })
 
