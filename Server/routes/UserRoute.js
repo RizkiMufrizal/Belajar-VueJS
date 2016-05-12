@@ -59,7 +59,7 @@
         return res.json(err);
       }
 
-      if (user.length) {
+      if (user != null) {
         bcrypt.compare(password, user.passwordHash, function(err, u) {
           if (u) {
 
