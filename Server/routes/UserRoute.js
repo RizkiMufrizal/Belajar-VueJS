@@ -6,7 +6,6 @@
     bcrypt = require('bcrypt'),
     logger = require('../config/logger'),
     jsonwebtoken = require('jsonwebtoken'),
-    expressJwt = require('express-jwt'),
     uuid = require('node-uuid'),
     User = require('../models/User'),
     secret = 'ini adalah kata kunci 12345';
@@ -70,7 +69,7 @@
             };
 
             jsonwebtoken.sign(profile, secret, {
-              expiresInMinutes: 60 * 5
+              expiresIn: 60 * 60 * 24
             }, function(err, token) {
 
               if (err) {
@@ -101,14 +100,6 @@
 
     });
 
-  });
-
-  router.get('/hello', expressJwt({
-    secret: secret
-  }), function(req, res) {
-    return res.json({
-      'info': 'hello word'
-    });
   });
 
   module.exports = router;

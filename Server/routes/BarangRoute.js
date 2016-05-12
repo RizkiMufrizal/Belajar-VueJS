@@ -10,7 +10,9 @@
     Barang = require('../models/Barang'),
     secret = 'ini adalah kata kunci 12345';
 
-  router.get('/barang', function(req, res) {
+  router.get('/barang', expressJwt({
+    secret: secret
+  }), function(req, res) {
     return Barang.find(function(err, barang) {
       if (err) {
         logger.error('error bung ', err);
