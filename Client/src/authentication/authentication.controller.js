@@ -16,6 +16,7 @@ export default {
       if (data.success) {
         this.user.authenticated = true
         localStorage.setItem('token', data.token)
+        context.credentials = {}
 
         router.go(redirect)
 
