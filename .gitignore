@@ -56,3 +56,10 @@ bower_components
 
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
+.DS_Store
+
+dist/
+npm-debug.log
+selenium-debug.log
+test/unit/coverage
+test/e2e/reports
